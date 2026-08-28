@@ -8,8 +8,12 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/style.css',
+                'resources/css/auth/signup.css',
 
-                'resources/js/app.js'
+                'resources/js/app.js',
+                'resources/js/main.js',
+                'resources/js/validators/SignupValidator.js',
+                'resources/js/auth/signup.js',
             ],
             refresh: true,
         }),

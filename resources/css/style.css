@@ -20,7 +20,107 @@
     font-family: sans-serif;
 }
 
+body {
+    height: 100dvh;
+    width: 100dvw;
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: whitesmoke;
+}
+
 h1 {
     font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
     color: #212529;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+.primary {
+    background-color: #1B4EF5;
+    color: white;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.flex {
+    display: flex;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.eyebrow-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.eyebrow-header>span {
+    font-size: 1rem;
+    color: #5996FF;
+}
+
+.card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* @Forms */
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-wrapper>label {
+    font-weight: 500;
+}
+
+input {
+    min-width: 200px;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    color: gray;
+    border-radius: 5px;
+}
+
+input:focus-visible {
+    outline: none;
+    border-color: skyblue;
+    box-shadow: 0 0 10px lightblue;
+}
+
+[id$="_error"] {
+    visibility: hidden;
+    color: red;
+    font-weight: 500;
+}
+
+.signup-form {
+    width: 300px;
+}
+
+@media screen and (min-width: 599px) and (max-width: 1029px) {
+    /*  */
+}
+
+@media screen and (min-width: 1030px) {
+    /*  */
 }
