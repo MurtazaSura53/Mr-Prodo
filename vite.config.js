@@ -5,14 +5,29 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/css/app.css',
+                'resources/css/style.css',
+
+                'resources/js/app.js'
+            ],
             refresh: true,
         }),
         tailwindcss(),
     ],
     server: {
-        watch: {
-            ignored: ['**/storage/framework/views/**'],
+        host: '0.0.0.0',
+        port: 5173,
+
+        cors: {
+            origin: 'http://192.168.0.101:8000',
         },
+
+        hmr: {
+            host: '192.168.0.101',
+        },
+        // watch: {
+        //     ignored: ['**/storage/framework/views/**'],
+        // },
     },
 });

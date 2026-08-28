@@ -1,0 +1,26 @@
+/*
+* Color code for this website
+* Primary CTA #1B4EF5
+* Secondary #3874FF
+* Third #5996FF
+*/
+
+/*
+*Color for fonts:
+*h1 #212529
+*h2 #343a40
+*h3 #495057
+*generic #6c757d
+*/
+
+* {
+    margin: 0px;
+    color: #6c757d;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
+    color: #212529;
+}
