@@ -1,25 +1,20 @@
 @extends('layouts.auth')
 
-@section('title', 'Signup')
+@section('title', 'Login')
 
 @section('styles')
-@vite('resources/css/auth/signup.css')
+@vite('resources/css/auth/login.css')
 @endsection
 
 
 @section('eyebrow-header')
-<span>Signup</span>
-<h1>Start your journey now!</h1>
+<span>Login</span>
+<h1>Let’s build something great.</h1>
 @endsection
 
 @section('form')
-<form id="form" action="{{ route('signup.store') }}" method="POST" class="card signup-form">
+<form id="form" action="{{ route('login.store') }}" method="POST" class="card signup-form">
     @csrf
-    <div class="input-wrapper">
-        <label for="name">Username:</label>
-        <input type="text" name="name" required>
-        <span id="name_error"></span>
-    </div>
     <div class="input-wrapper">
         <label for="email">Email:</label>
         <input type="email" name="email" required>
@@ -37,5 +32,5 @@
 @endsection
 
 @section('scripts')
-@vite('resources/js/auth/signup.js');
+@vite('resources/js/auth/login.js');
 @endsection

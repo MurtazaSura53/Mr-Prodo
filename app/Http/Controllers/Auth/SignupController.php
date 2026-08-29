@@ -19,7 +19,7 @@ class SignupController extends Controller
     ) {
         $fields = $request->validated();
         if ($authService->signup($fields)) {
-            return "login";
+            return redirect()->route('login');
         }
     }
 }
