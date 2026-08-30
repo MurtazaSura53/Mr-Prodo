@@ -503,4 +503,117 @@ export class Form {
     getForm() {
         return this.form;
     }
+    getJson() {
+        const obj = {};
+        this.allInputs.foreach(input => {
+            obj[input.name] = input.value;
+        });
+        return JSON.stringify(obj);
+    }
+}
+
+export class Toast {
+
+    static icons = {
+        success: 'fa-circle-check',
+        error: 'fa-circle-xmark',
+        warning: 'fa-triangle-exclamation',
+        info: 'fa-circle-info'
+    };
+
+    static show(message, type = 'success', duration = 3000) {
+
+        const container = document.querySelector('#toast-container');
+
+        const icon = this.icons[type] ?? this.icons.info;
+
+        const toast = document.createElement('div');
+
+        toast.className = `toast ${type}`;
+
+        toast.innerHTML = `
+            <i class="fa-solid ${icon}"></i>
+
+            <span class="toast-message">
+                ${message}
+            </span>
+
+            <button class="toast-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        `;
+
+        container.appendChild(toast);
+
+        const close = () => {
+
+            if (toast.classList.contains('hide')) {
+                return;
+            }
+
+            toast.classList.add('hide');
+
+            toast.addEventListener('animationend', () => {
+                toast.remove();
+            });
+        };
+
+        toast
+            .querySelector('.toast-close')
+            .addEventListener('click', close);
+
+        setTimeout(close, duration);
+    }
+}
+
+export class Alert {
+
+    static show(message, onOk) {
+
+        const container = document.querySelector('#alert-container');
+
+        container.innerHTML = `
+            <div class="alert-box">
+
+                <div class="alert-message">
+                    ${message}
+                </div>
+
+                <div class="alert-actions">
+
+                    <button class="alert-btn alert-cancel">
+                        Cancel
+                    </button>
+
+                    <button class="alert-btn alert-ok">
+                        OK
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        container.classList.add('active');
+
+        const cancelBtn = container.querySelector('.alert-cancel');
+        const okBtn = container.querySelector('.alert-ok');
+
+        const close = () => {
+            container.classList.remove('active');
+            container.innerHTML = '';
+        };
+
+        cancelBtn.addEventListener('click', close);
+
+        okBtn.addEventListener('click', () => {
+
+            close();
+
+            if (typeof onOk === 'function') {
+                onOk();
+            }
+
+        });
+    }
 }

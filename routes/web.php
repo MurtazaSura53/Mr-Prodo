@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/signup', [SignupController::class, 'index'])
@@ -16,6 +17,14 @@ Route::post('/login', [LoginController::class, 'store'])
     ->name('login.store');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LoginController::class, 'destroy'])
+        ->name('logout');
+
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 });

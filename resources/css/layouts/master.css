@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px auto;
+}
+
+main {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+
+@media screen and (min-width: 599px) and (max-width: 1029px) {
+    /*  */
+}
+
+@media screen and (min-width: 1030px) {
+    .container {
+        grid-template-columns: 200px auto;
+    }
+
+    header {
+        grid-column: 1 / span 2;
+    }
+}

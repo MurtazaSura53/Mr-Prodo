@@ -27,4 +27,12 @@ class LoginController extends Controller
             'password' => 'Invalid email or password.',
         ]);
     }
+    public function destroy(AuthService $authService)
+    {
+        $authService->logout();
+
+        return response()->json([
+            'message' => 'Logged out successfully',
+        ]);
+    }
 }

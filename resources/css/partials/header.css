@@ -1,0 +1,50 @@
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #1B4EF5;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.header-btn-wrapper {
+    display: flex;
+    gap: 5px;
+}
+
+.open-sidenav-btn,
+.close-sidenav-btn {
+    background: none;
+    border: none;
+    font-size: 25px;
+}
+
+.close-sidenav-btn {
+    display: none;
+}
+
+.open-sidenav-btn>i,
+.close-sidenav-btn>i {
+    color: white;
+}
+
+@media screen and (min-width: 599px) and (max-width: 1029px) {
+    /*  */
+}
+
+@media screen and (min-width: 1030px) {
+    .open-sidenav-btn {
+        display: none;
+    }
+
+    .close-sidenav-btn {
+        display: none;
+    }
+}

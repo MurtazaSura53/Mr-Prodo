@@ -37,5 +37,5 @@
 @endsection
 
 @section('scripts')
-@vite('resources/js/auth/signup.js');
+@vite('resources/js/auth/signup.js')
 @endsection

@@ -4,13 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
+
+    @include('partials/global')
+    @yield('styles')
 </head>
 
 <body>
-    <main>
-        @yield('content')
-    </main>
+    <div class="container">
+        @include('partials.header')
+        @include('partials.sidenav')
+        <main>
+            @yield('main')
+        </main>
+    </div>
+
+    <div id="alert-container"></div>
+    <div id="toast-container"></div>
+    @yield('scripts')
 </body>
 
 </html>

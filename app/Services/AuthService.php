@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {
@@ -11,5 +11,16 @@ class AuthService
     {
         $result = User::create($fields);
         return !!$result;
+    }
+    public function update(User $user, array $fields)
+    {
+        $user->update($fields);
+    }
+    public function logout(): void
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
     }
 }
