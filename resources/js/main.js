@@ -119,6 +119,7 @@ export class Element {
     }
 
     children(children) {
+        // console.log(children);
         children.forEach(child => {
             if (typeof child === "string" || typeof child === "number") {
                 this.element.appendChild(document.createTextNode(child));
@@ -146,7 +147,11 @@ export class Paginate {
     async next(closure) {
         if (this.page >= this.lastPage) return;
 
-        const response = await fetch(`${this.url}?page=${this.page + 1}`);
+        const response = await fetch(`${this.url}?page=${this.page + 1}`, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         const data = await response.json();
 
         this.page = this.page + 1;
@@ -155,14 +160,22 @@ export class Paginate {
     async previous(closure) {
         if (this.page <= 1) return;
 
-        const response = await fetch(`${this.url}?page=${this.page - 1}`);
+        const response = await fetch(`${this.url}?page=${this.page - 1}`, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         const data = await response.json();
 
         this.page = this.page - 1;
         return closure(data);
     }
     async current(closure) {
-        const response = await fetch(`${this.url}?page=${this.page}`);
+        const response = await fetch(`${this.url}?page=${this.page}`, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         const data = await response.json();
         return closure(data);
     }
@@ -568,7 +581,7 @@ export class Toast {
 
 export class Alert {
 
-    static show(message, onOk) {
+    static show(message, onOk, okBtnText = "OK") {
 
         const container = document.querySelector('#alert-container');
 
@@ -586,7 +599,7 @@ export class Alert {
                     </button>
 
                     <button class="alert-btn alert-ok">
-                        OK
+                        ${okBtnText}
                     </button>
 
                 </div>
@@ -615,5 +628,70 @@ export class Alert {
             }
 
         });
+    }
+}
+export class Prompt {
+    static show(fieldsData, onOk, okBtnText = "OK") {
+
+        const container = Selector.id("prompt-container");
+        const inputWrappers = [];
+
+        fieldsData.forEach(field => {
+            const inputWrapper = Element.make('div')
+                .attributes({ class: "input-wrapper" })
+                .children([
+                    Element.make('label')
+                        .attributes({ text: field.label }).create(),
+
+                    Element.make('input')
+                        .attributes({
+                            type: "text",
+                            name: field.name
+                        }).create(),
+                ]).create();
+            inputWrappers.push(inputWrapper);
+        })
+
+        const close = () => {
+            container.classList.remove('active');
+            container.innerHTML = '';
+        };
+        const generatedFields = () => {
+            const fields = [];
+            fieldsData.forEach(field => {
+                fields.push(Selector.qs(`input[name="${field.name}"]`));
+            });
+            return fields;
+        }
+
+        const promptBox = Element.make('div', container)
+            .attributes({ class: "prompt-box" })
+            .children([...inputWrappers, ...[
+                Element.make("div")
+                    .attributes({ class: "prompt-actions" })
+                    .children([
+                        Element.make("button")
+                            .attributes({
+                                type: "button",
+                                class: "prompt-btn prompt-cancel",
+                                text: "Cancel",
+                                onClick: close
+                            }).create(),
+
+                        Element.make("button")
+                            .attributes({
+                                type: "button",
+                                class: "prompt-btn prompt-ok",
+                                text: okBtnText,
+                                onClick: () => {
+                                    if (typeof onOk === 'function') {
+                                        onOk(generatedFields());
+                                    }
+                                    close();
+                                }
+                            }).create(),
+                    ]).create(),
+            ]]).create();
+        container.classList.add('active');
     }
 }

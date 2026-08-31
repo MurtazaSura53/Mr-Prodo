@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -27,4 +28,13 @@ Route::middleware('auth')->group(function () {
         ->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])
         ->name('profile.update');
+
+    Route::get('/categories', [CategoryController::class, 'index'])
+        ->name('categories');
+    Route::post('/categories', [CategoryController::class, 'store'])
+        ->name('categories.store');
+    Route::patch('/categories/{category}', [CategoryController::class, 'update'])
+        ->name('categories.update');
+    Route::delete("/categories/{category}", [CategoryController::class, 'destroy'])
+        ->name('categories.destroy');
 });

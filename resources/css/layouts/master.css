@@ -5,13 +5,24 @@
 }
 
 main {
+    width: 100%;
     padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
 }
 
-
+main::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Edge, Safari */
+}
 
 @media screen and (min-width: 599px) and (max-width: 1029px) {
     /*  */

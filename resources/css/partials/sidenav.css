@@ -8,6 +8,7 @@
     transition-duration: 0.5s;
     transform: translateX(-200px) translateY(60px);
     position: absolute;
+    z-index: 1;
 }
 
 .sidenav.active {

@@ -15,7 +15,6 @@
 
 * {
     margin: 0px;
-    color: #6c757d;
     box-sizing: border-box;
     font-family: sans-serif;
 }
@@ -39,7 +38,14 @@ button {
     cursor: pointer;
 }
 
-.btn {
+button:hover {
+    opacity: 0.8;
+}
+
+.btn,
+.btn-sml,
+.btn-fit,
+.btn-icon {
     border: none;
     padding: 10px 15px;
     border-radius: 15px;
@@ -50,14 +56,35 @@ button {
     align-items: center;
 }
 
-.btn>i {
-    color: white;
+.btn-sml {
+    width: 100px;
 }
 
-.primary {
+.btn-fit {
+    width: fit-content;
+}
+
+.btn-icon {
+    width: fit-content;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.primary,
+.general,
+.error {
     background-color: #1B4EF5;
     color: white;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.general {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.error {
+    background-color: red;
 }
 
 .flex {
@@ -99,6 +126,7 @@ button {
 
 .input-wrapper>label {
     font-weight: 500;
+    color: #6c757d;
 }
 
 input {
@@ -329,6 +357,185 @@ input:focus-visible {
 
 .alert-btn:hover {
     opacity: 0.9;
+}
+
+/* ############################################################################# */
+/* @section: Prompt Box */
+/* ############################################################################# */
+#prompt-container {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.35);
+
+    z-index: 10000;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+#prompt-container.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.prompt-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: min(90%, 400px);
+
+    padding: 25px;
+
+    background-color: white;
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
+}
+
+#prompt-container.active .prompt-box {
+    transform: scale(1);
+}
+
+.prompt-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.prompt-btn {
+    border: none;
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.prompt-cancel {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.prompt-ok {
+    background-color: #1B4EF5;
+    color: white;
+}
+
+.prompt-btn:hover {
+    opacity: 0.9;
+}
+
+/* ############################################################################# */
+/* @section: Pagination button strip*/
+/* ############################################################################# */
+
+.pagination-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    height: 38px;
+    min-width: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 0 12px;
+
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #343a40;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #f1f5ff;
+    border-color: #5996ff;
+    color: #1b4ef5;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.pagination-pages {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pagination-page {
+    border: none;
+    background: none;
+    padding: 0;
+
+    min-width: auto;
+    height: auto;
+
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.pagination-page:hover {
+    background: none;
+    border: none;
+    color: #1b4ef5;
+}
+
+.pagination-page.active {
+    color: #1B4EF5;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.pagination-page.active:hover {
+    background: none;
+    border: none;
+    color: #1b4ef5;
+}
+
+.pagination-ellipsis {
+    color: #6c757d;
+    font-size: 0.9rem;
 }
 
 @media screen and (min-width: 599px) and (max-width: 1029px) {
