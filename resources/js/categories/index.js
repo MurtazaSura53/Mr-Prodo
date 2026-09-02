@@ -353,7 +353,7 @@ function bindCategoriesDelete() {
     deleteBtns.forEach(deleteBtn => {
 
         deleteBtn.addEventListener("click", () => {
-            Alert.show('Are you sure you want to delete this category?', () => {
+            Alert.show('Are you sure, you want to delete this category?', () => {
                 const categoryId = deleteBtn.dataset.categoryId;
                 const request = new Request({
                     url: `/categories/${categoryId}`,

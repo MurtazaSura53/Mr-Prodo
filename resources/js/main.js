@@ -518,7 +518,8 @@ export class Form {
     }
     getJson() {
         const obj = {};
-        this.allInputs.foreach(input => {
+        console.log(this.allInputs);
+        this.allInputs.forEach(input => {
             obj[input.name] = input.value;
         });
         return JSON.stringify(obj);
@@ -618,6 +619,49 @@ export class Alert {
         };
 
         cancelBtn.addEventListener('click', close);
+
+        okBtn.addEventListener('click', () => {
+
+            close();
+
+            if (typeof onOk === 'function') {
+                onOk();
+            }
+
+        });
+    }
+}
+export class Inform {
+
+    static show(message, onOk, okBtnText = "OK") {
+
+        const container = document.querySelector('#inform-container');
+
+        container.innerHTML = `
+            <div class="inform-box">
+
+                <div class="inform-message">
+                    ${message}
+                </div>
+
+                <div class="inform-actions">
+
+                    <button class="inform-btn inform-ok">
+                        ${okBtnText}
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        container.classList.add('active');
+        const okBtn = container.querySelector('.inform-ok');
+
+        const close = () => {
+            container.classList.remove('active');
+            container.innerHTML = '';
+        };
 
         okBtn.addEventListener('click', () => {
 

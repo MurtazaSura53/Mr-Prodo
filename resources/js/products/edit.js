@@ -1,47 +1,56 @@
-import { Selector, Form, Request, Toast } from '../main.js';
-import { UpdateProfileValidator } from '../validators/UpdateProfileValidator.js';
+import { Selector, Form, Request, Inform, Toast } from '../main';
+import { UpdateProductValidator } from '../validators/UpdateProductValidator';
 
-const validator = new UpdateProfileValidator();
-const form = new Form(Selector.id('form'));
-const submitBtn = Selector.id('submitBtn');
+const productId = Selector.qs("meta[name='product']").content;
+const editProductBtn = Selector.id("editProductBtn");
+const form = new Form(Selector.id("form"));
+const validator = new UpdateProductValidator();
 
 validator.liveValidation(form.getForm(), validator);
 
-submitBtn.addEventListener('click', async () => {
+editProductBtn.addEventListener('click', async () => {
     if (!validator.validate()) return;
 
-    const requestBody = {};
-
     const changedFields = form.getChangedFields();
-    for (const key of Object.keys(changedFields)) {
-        requestBody[key] = changedFields[key].value;
+    if (!changedFields || Object.keys(changedFields).length === 0) {
+        Toast.show("Nothing to change!", "warning");
+        return;
     }
-    requestBody["_method"] = "PATCH";
-    requestBody["_token"] = form._token.value;
+
+    const requestBody = {};
+    for (const inputName of Object.keys(changedFields)) {
+        requestBody[inputName] = changedFields[inputName].value;
+    }
+    requestBody['_token'] = form._token.value;
 
     const request = new Request({
-        url: "/profile",
-        method: "POST",
+        url: `/products/${productId}`,
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
         },
         body: JSON.stringify(requestBody),
     });
-    request.send(response => {
+    request.send(async response => {
         switch (response.status) {
             case 200:
-                Toast.show(response.data.message);
+                Inform.show(response.data.message, () => {
+                    window.location.href = "/products";
+                });
                 break;
             case 422:
                 resetFieldsStyle(form.allInputs);
                 displayErrors(response.data.errors);
                 Toast.show("Invalid Data", "error");
                 break;
+            case 403:
+                Toast.show("Unauthorized", "error");
+                break;
             default:
-                Toast.show("Server error!", "error");
+                Toast.show("Server Error", "error");
         }
-    });
+    })
 });
 function resetFieldsStyle(fields) {
     fields.forEach(field => {

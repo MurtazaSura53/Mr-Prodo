@@ -1,0 +1,84 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.main-header>.btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+/* Form Card */
+
+.add-product-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 20px;
+
+    background-color: white;
+    border-radius: 10px;
+
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Inputs */
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* Description */
+#description-wrapper {
+    grid-template-columns: 1 / span 2;
+}
+
+#description {
+    min-height: 120px;
+    width: 100%;
+    resize: vertical;
+}
+
+
+
+
+/* Button */
+
+.action-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 25px;
+}
+
+
+/* PC */
+
+@media screen and (min-width: 1030px) {
+
+    .add-product-card {
+        padding: 25px;
+    }
+
+    .input-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 25px;
+        row-gap: 20px;
+    }
+
+    #description-wrapper {
+        grid-column: 1 / span 2;
+    }
+
+    /* Customize default input-wrapper */
+    .input-wrapper.custom {
+        width: 350px;
+    }
+}

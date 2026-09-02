@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $this->authorize("update", $category);
         $this->categoryService->update($category, $request->validated());
         return response()->json([
-            "message" => "Saved",
+            "message" => "Changes Saved",
             "data" => new CategoryResource($category)
         ]);
     }

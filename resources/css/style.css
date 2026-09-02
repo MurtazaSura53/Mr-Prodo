@@ -11,6 +11,7 @@
 *h2 #343a40
 *h3 #495057
 *generic #6c757d
+*background(main/body): whitesmoke
 */
 
 * {
@@ -129,15 +130,18 @@ button:hover {
     color: #6c757d;
 }
 
-input {
+input,
+select,
+textarea {
     min-width: 200px;
     border: 1px solid lightgray;
-    padding: 5px 10px;
+    padding: 10px 10px;
     color: gray;
     border-radius: 5px;
 }
 
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
     outline: none;
     border-color: skyblue;
     box-shadow: 0 0 10px lightblue;
@@ -438,6 +442,87 @@ input:focus-visible {
 }
 
 .prompt-btn:hover {
+    opacity: 0.9;
+}
+
+/* ############################################################################# */
+/* @section: Inform Box */
+/* ############################################################################# */
+#inform-container {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.35);
+
+    z-index: 10000;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+#inform-container.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.inform-box {
+    width: min(90%, 400px);
+
+    padding: 25px;
+
+    background-color: white;
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
+}
+
+#inform-container.active .inform-box {
+    transform: scale(1);
+}
+
+.inform-message {
+    margin-bottom: 25px;
+
+    color: #343a40;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.inform-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.inform-btn {
+    border: none;
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.inform-ok {
+    background-color: #1B4EF5;
+    color: white;
+}
+
+.inform-btn:hover {
     opacity: 0.9;
 }
 

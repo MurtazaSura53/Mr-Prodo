@@ -1,37 +1,31 @@
-import { Selector, Form, Request, Toast } from '../main.js';
-import { UpdateProfileValidator } from '../validators/UpdateProfileValidator.js';
+import { Selector, Form, Request, Inform, Toast } from '../main';
+import { StoreProductValidator } from '../validators/StoreProductValidator';
 
-const validator = new UpdateProfileValidator();
-const form = new Form(Selector.id('form'));
-const submitBtn = Selector.id('submitBtn');
+const storeProductBtn = Selector.id("storeProductBtn");
+const form = new Form(Selector.id("form"));
+// const csrfToken = Selector.qs("meta[name='csrf-token']").content;
+const validator = new StoreProductValidator();
 
 validator.liveValidation(form.getForm(), validator);
 
-submitBtn.addEventListener('click', async () => {
+storeProductBtn.addEventListener('click', async () => {
     if (!validator.validate()) return;
 
-    const requestBody = {};
-
-    const changedFields = form.getChangedFields();
-    for (const key of Object.keys(changedFields)) {
-        requestBody[key] = changedFields[key].value;
-    }
-    requestBody["_method"] = "PATCH";
-    requestBody["_token"] = form._token.value;
-
     const request = new Request({
-        url: "/profile",
+        url: "/products",
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
         },
-        body: JSON.stringify(requestBody),
+        body: form.getJson(),
     });
-    request.send(response => {
+    request.send(async response => {
         switch (response.status) {
-            case 200:
-                Toast.show(response.data.message);
+            case 201:
+                Inform.show(response.data.message, () => {
+                    window.location.href = "/products";
+                });
                 break;
             case 422:
                 resetFieldsStyle(form.allInputs);
@@ -39,10 +33,10 @@ submitBtn.addEventListener('click', async () => {
                 Toast.show("Invalid Data", "error");
                 break;
             default:
-                Toast.show("Server error!", "error");
+                Toast.show("Server Error", "error");
         }
-    });
-});
+    })
+})
 function resetFieldsStyle(fields) {
     fields.forEach(field => {
         const errorLabel = Selector.id(`${field.name}_error`);
