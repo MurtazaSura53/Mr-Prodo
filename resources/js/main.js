@@ -108,6 +108,8 @@ export class Element {
                     } else if (key.startsWith("on")) {
                         const event = key.slice(2).toLowerCase();
                         this.element.addEventListener(event, value);
+                    } else if (key === "list") {
+                        this.element.setAttribute("list", value);
                     } else if (key in this.element) {
                         this.element[key] = value;
                     } else {
@@ -197,7 +199,7 @@ export class Request {
         const response = await fetch(this.url, {
             method: this.method,
             headers: this.headers,
-            body: this.body
+            body: (this.body && Object.keys(this.body).length > 0)
                 ? this.body
                 : null,
         });
@@ -524,6 +526,13 @@ export class Form {
         });
         return JSON.stringify(obj);
     }
+}
+export function createInput(label, name, attributes = {}) {
+    return Element.make('div').attributes({ class: 'input-wrapper' }).children([
+        Element.make('label').attributes({ for: name, text: label }).create(),
+        Element.make('input').attributes({ name: name, ...attributes }).create(),
+        Element.make('span').attributes({ id: `${name}_error` }).create(),
+    ]).create();
 }
 
 export class Toast {

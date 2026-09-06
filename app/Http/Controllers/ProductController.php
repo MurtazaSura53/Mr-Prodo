@@ -16,6 +16,11 @@ class ProductController extends Controller
         public ProductService $productService
     ) {}
 
+    public function options()
+    {
+        $productOptions = $this->productService->options();
+        return response()->json($productOptions);
+    }
     public function index(Request $request)
     {
         $products = $this->productService->paginated();

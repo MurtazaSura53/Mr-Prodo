@@ -16,7 +16,7 @@
     <div class="container">
         @include('partials.header')
         @include('partials.sidenav')
-        <main>
+        <main id="main">
             @yield('main')
         </main>
     </div>

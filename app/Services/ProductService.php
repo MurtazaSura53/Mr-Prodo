@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductService
 {
-    public function all()
+    public function options()
     {
-        return Product::with('category')->get();
+        return Product::all(['id', 'name', 'unit', 'purchase_price']);
     }
     public function paginated()
     {

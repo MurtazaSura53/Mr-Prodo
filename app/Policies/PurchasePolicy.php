@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ProductPolicy
+class PurchasePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,9 +19,9 @@ class ProductPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Product $product): bool
+    public function view(User $user, Purchase $purchase): bool
     {
-        return false;
+        return $user->id === $purchase->user_id;
     }
 
     /**
@@ -35,23 +35,23 @@ class ProductPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Product $product): bool
+    public function update(User $user, Purchase $purchase): bool
     {
-        return $user->id === $product->user_id;
+        return $user->id === $purchase->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Product $product): bool
+    public function delete(User $user, Purchase $purchase): bool
     {
-        return $user->id === $product->user_id;
+        return $user->id === $purchase->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Product $product): bool
+    public function restore(User $user, Purchase $purchase): bool
     {
         return false;
     }
@@ -59,16 +59,8 @@ class ProductPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Product $product): bool
+    public function forceDelete(User $user, Purchase $purchase): bool
     {
         return false;
-    }
-
-    /**
-     * Determine whether the user can Purchase the model.
-     */
-    public function purchase(User $user, Product $product): bool
-    {
-        return $user->id === $product->user_id;
     }
 }

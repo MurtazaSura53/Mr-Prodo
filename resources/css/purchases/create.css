@@ -1,0 +1,119 @@
+#form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.main-header>.btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.input-wrapper-card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.input-wrapper-card>.input-wrapper {
+    width: 100%;
+}
+
+.purchase_items_card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.purchase_items_card>.card_header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid lightgray;
+}
+
+.purchase-item-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.purchase-item-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0px;
+}
+
+.product-name {
+    flex-grow: 1;
+}
+
+.unit {
+    color: gray;
+}
+
+.purchase-item-row .x-icon-wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.purchase-item-row .x-icon {
+    color: red;
+}
+
+.purchase-item-row .x-icon::before {
+    content: "Remove ";
+}
+
+.purchase-item-row .x-icon:hover {
+    background-color: rgba(255, 0, 0, 0.178);
+}
+
+.total-amount-wrapper {
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    justify-content: end;
+    font-size: 20px;
+    color: dimgray;
+}
+
+@media screen and (min-width: 1030px) {
+    .input-wrapper-card {
+        flex-direction: row;
+    }
+
+    .purchase-item-wrapper>.purchase-item-row {
+        flex-direction: row;
+    }
+
+    .purchase-item-row .x-icon-wrapper {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .purchase-item-row .x-icon::before {
+        content: none;
+    }
+}

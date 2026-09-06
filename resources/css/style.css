@@ -49,7 +49,7 @@ button:hover {
 .btn-icon {
     border: none;
     padding: 10px 15px;
-    border-radius: 15px;
+    border-radius: 5px;
     width: 200px;
     display: flex;
     gap: 5px;
@@ -67,16 +67,22 @@ button:hover {
 
 .btn-icon {
     width: fit-content;
+    height: fit-content;
     padding: 10px;
     flex-shrink: 0;
 }
 
 .primary,
+.secondary,
 .general,
 .error {
     background-color: #1B4EF5;
     color: white;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.secondary {
+    background-color: #3874FF;
 }
 
 .general {
@@ -85,7 +91,7 @@ button:hover {
 }
 
 .error {
-    background-color: red;
+    background-color: #FF2C2C;
 }
 
 .flex {
@@ -140,6 +146,10 @@ textarea {
     border-radius: 5px;
 }
 
+input:read-only {
+    background-color: whitesmoke;
+}
+
 input:focus-visible,
 textarea:focus-visible {
     outline: none;
@@ -155,6 +165,41 @@ textarea:focus-visible {
 
 .signup-form {
     width: 300px;
+}
+
+/* Flex Shortcuts */
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.gap-thin {
+    gap: 5px;
+}
+
+.flex.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex.jc-center {
+    justify-content: center;
+}
+
+.flex.ai-center {
+    align-items: center;
+}
+
+.flex.ai-end {
+    align-items: end;
+}
+
+.flex.jc-end {
+    justify-content: end;
 }
 
 /* ############################################################################# */

@@ -1,0 +1,180 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.main-header>.btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.page-overview-strip {
+    display: flex;
+    gap: 10px;
+    color: #6c757d;
+}
+
+/* =========================================================
+   Purchase Grid
+   ========================================================= */
+
+.purchase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+
+/* =========================================================
+   Purchase Card
+   ========================================================= */
+
+.purchase-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.purchase-card:hover {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   Card Header
+   ========================================================= */
+
+.purchase-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.purchase-id {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.purchase-total {
+    font-size: 17px;
+    font-weight: 700;
+    color: #222;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Card Body
+   ========================================================= */
+
+.purchase-card-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.purchase-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.purchase-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.purchase-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+
+/* =========================================================
+   Card Footer
+   ========================================================= */
+
+.purchase-card-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+    padding-top: 14px;
+
+    border-top: 1px solid #eee;
+}
+
+.purchase-action {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #3874FF;
+    text-decoration: none;
+
+    transition: gap 0.2s ease;
+}
+
+.purchase-action:hover {
+    gap: 10px;
+}
+
+.purchase-action i {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   Tablet
+   3 Cards
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+    .purchase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   Desktop
+   4 Cards
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .purchase-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+}
