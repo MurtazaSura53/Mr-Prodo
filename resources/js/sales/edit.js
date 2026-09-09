@@ -1,0 +1,373 @@
+import { Selector, Element, Toast, Inform, Request, createInput, Alert } from "../main";
+Selector.id('salesLink').classList.add('active');
+
+const form = Selector.id("form");
+const saleId = Selector.qs("meta[name='saleId']").content;
+const productList = Selector.id("productList");
+const addSaleItemBtn = Selector.id("addSaleItemBtn");
+
+const saleItems = Selector.id("saleItems");
+const totalAmount = Selector.id("totalAmount");
+const totalProfit = Selector.id("totalProfit");
+let saleItemsCount = Selector.id("saleItemsCount").value;
+
+const customerName = Selector.id("customerName");
+const customerEmail = Selector.id("customerEmail");
+const customerPhone = Selector.id("customerPhone");
+
+const saleDate = Selector.id("saleDate");
+const updateSaleBtn = Selector.id("updateSaleBtn");
+const deleteSaleBtn = Selector.id("deleteSaleBtn");
+
+const saleItemsRows = saleItems.querySelectorAll(".sale-item-row");
+saleItemsRows.forEach(saleItem => {
+    const product = saleItem.querySelector('input[data-product-id]');
+    const unit = saleItem.querySelector('span[data-unit]');
+    const qty = saleItem.querySelector('input[data-qty]');
+    const price = saleItem.querySelector('input[data-price]');
+    const purchasePrice = saleItem.querySelector('input[data-purchase-price]');
+    const profit = saleItem.querySelector('input[data-profit]');
+    const subtotal = saleItem.querySelector('input[data-subtotal]');
+    const removeBtn = saleItem.querySelector('button[data-remove-btn]');
+
+    product.addEventListener('input', fillData);
+    qty.addEventListener('input', calculateSubtotal);
+    price.addEventListener('input', calculateSubtotal);
+    removeBtn.addEventListener('click', removeSaleItem);
+
+    function fillData() {
+        const productName = product.value;
+
+        const productOption = productList.querySelector(`option[value='${productName}']`);
+        product.dataset.id = productOption?.dataset.id ?? '';
+        unit.textContent = productOption?.dataset.unit ?? '--';
+        qty.value = 1;
+        price.value = productOption?.dataset.salePrice ?? 0;
+        calculateSubtotal();
+    }
+    function calculateSubtotal() {
+        subtotal.value = (Number(price?.value ?? 0) * Number(qty?.value ?? 0)).toFixed(2);
+        calculateProfit();
+        calculateTotal();
+        calculateTotalProfit();
+    }
+    function calculateProfit() {
+        const totalCost = purchasePrice.value * qty.value;
+        profit.value = subtotal.value - totalCost;
+    }
+    function removeSaleItem() {
+        saleItem.remove();
+        calculateTotal();
+        resetInputCounts();
+    }
+});
+
+addSaleItemBtn.addEventListener('click', renderSaleItem);
+function renderSaleItem() {
+
+    const productInput = Element.make('div').attributes({
+        class: 'input-wrapper product-name'
+    }).children([
+        Element.make('label').attributes({ for: 'product', text: 'Product' }).create(),
+        Element.make('input').attributes({
+            type: 'text',
+            name: `sale_items[${saleItemsCount}]product_id`,
+            list: 'productList',
+            autocomplete: 'off',
+            required: 'required',
+            dataset: { productId: '' },
+            onInput: fillData
+        }).create(),
+        Element.make('span').attributes({ id: `sale_items[${saleItemsCount}]product_id_error` }).create(),
+    ]).create();
+
+    const unit = Element.make('span').attributes({ class: "unit", text: '--' }).create();
+    const qtyInput = Element.make('div').attributes({ class: 'input-wrapper' }).children([
+        Element.make('label').attributes({ for: 'qty', text: 'Qty' }).create(),
+        Element.make('div').attributes({ class: 'flex ai-end gap-thin' }).children([
+            Element.make('input').attributes({
+                type: "number",
+                name: `sale_items[${saleItemsCount}]qty`,
+                value: "0",
+                required: 'required',
+                dataset: { qty: '' },
+                onInput: () => {
+                    calculateSubtotal();
+                    calculateProfit();
+                },
+            }).create(),
+            unit
+        ]).create(),
+        Element.make('span').attributes({ id: `sale_items[${saleItemsCount}]qty_error` }).create(),
+    ]).create();
+
+    const priceInput = createInput('Price', `sale_items[${saleItemsCount}]price`, {
+        type: 'number',
+        value: 0,
+        required: 'required',
+        dataset: { price: '' },
+        onInput: () => {
+            calculateSubtotal();
+            calculateProfit();
+        },
+    });
+
+    const purchasePriceField = Element.make('input').attributes({
+        type: 'hidden',
+        value: 0,
+        dataset: { purchasePrice: '' },
+    });
+
+    const profitInput = createInput('Profit', `sale_items[${saleItemsCount}]profit`, {
+        type: 'number',
+        class: 'profit',
+        value: 0,
+        required: 'required',
+        readonly: 'true',
+        dataset: { profit: '' },
+    });
+
+    const subtotalInput = createInput('Subtotal', `sale_items[${saleItemsCount}]subtotal`, {
+        type: 'number',
+        class: 'subtotal',
+        value: 0,
+        required: 'required',
+        readonly: 'true',
+        dataset: { subtotal: '' },
+    });
+
+    const removeBtn = Element.make('button').attributes({
+        type: 'button',
+        class: 'btn-icon x-icon',
+        html: '<i class="fa-solid fa-xmark"></i>',
+        onClick: removeSaleItem,
+    }).create();
+
+    const removeBtnWrapper = Element.make('div').attributes({ class: 'x-icon-wrapper' })
+        .children([removeBtn]).create();
+
+    const saleItem = Element.make('div', saleItems).attributes({
+        class: "sale-item-row",
+        dataset: {
+            count: saleItemsCount,
+        }
+    }).children([
+        productInput, qtyInput, priceInput, purchasePriceField, profitInput, subtotalInput, removeBtnWrapper,
+    ]).create();
+
+    function fillData() {
+        const productField = productInput.querySelector(`input[data-product-id]`);
+        const priceField = priceInput.querySelector(`input[data-price]`);
+        const qtyField = qtyInput.querySelector(`input[data-qty]`);
+
+        const productName = productField.value;
+
+        const product = productList.querySelector(`option[value='${productName}']`);
+        productField.dataset.id = product?.dataset.id ?? '';
+        unit.textContent = product?.dataset.unit ?? '--';
+        qtyField.value = 1;
+        priceField.value = product?.dataset.salePrice ?? 0;
+        purchasePriceField.value = product?.dataset.purchasePrice ?? 0;
+
+        calculateSubtotal();
+        calculateProfit();
+    }
+
+    function calculateSubtotal() {
+        if (!saleItem) return;
+        const priceField = priceInput.querySelector(`input[data-price]`);
+        const qtyField = qtyInput.querySelector(`input[data-qty]`);
+        const subtotalField = subtotalInput.querySelector(`input[data-subtotal]`);
+
+        subtotalField.value = (Number(priceField?.value ?? 0) * Number(qtyField?.value ?? 0)).toFixed(2);
+        calculateTotal();
+    }
+    function calculateProfit() {
+        if (!saleItem) return;
+
+        const qtyField = qtyInput.querySelector(`input[data-qty]`);
+        const subtotalField = subtotalInput.querySelector(`input[data-subtotal]`);
+        const profitField = profitInput.querySelector(`input[data-profit]`);
+
+        const purchasePrice = purchasePriceField.value;
+        const qty = qtyField.value;
+        const subtotal = subtotalField.value;
+        const subtotalCost = purchasePrice * qty;
+        const profit = subtotal - subtotalCost;
+
+        profitField.value = profit;
+        calculateTotalProfit();
+    }
+
+    function removeSaleItem() {
+        saleItem.remove();
+        calculateTotal();
+        calculateTotalProfit();
+        resetInputCounts();
+    }
+    saleItemsCount++;
+}
+function calculateTotal() {
+    let grandTotal = 0;
+    const subtotals = saleItems.querySelectorAll("input[data-subtotal]");
+    subtotals?.forEach(subtotal => {
+        grandTotal += Number(subtotal?.value ?? 0);
+    });
+    totalAmount.textContent = `₹${grandTotal.toFixed(2)}`;
+}
+
+function calculateTotalProfit() {
+    let grandTotalProfit = 0;
+    const profitSubtotals = saleItems.querySelectorAll("input[data-profit]");
+    profitSubtotals?.forEach(subtotal => {
+        grandTotalProfit += Number(subtotal?.value ?? 0);
+    });
+    totalProfit.textContent = `₹${grandTotalProfit.toFixed(2)}`;
+}
+function resetInputCounts() {
+    saleItemsCount = 0;
+    const saleItemRows = saleItems.querySelectorAll('.sale-item-row');
+
+    saleItemRows.forEach(saleItemRow => {
+        const productId = saleItemRow.querySelector(`input[data-product-id]`);
+        const qty = saleItemRow.querySelector(`input[data-qty]`);
+        const price = saleItemRow.querySelector(`input[data-price]`);
+        const subtotal = saleItemRow.querySelector(`input[data-subtotal]`);
+
+        productId.name = `sale_items[${saleItemsCount}]product_id`;
+        qty.name = `sale_items[${saleItemsCount}]qty`;
+        price.name = `sale_items[${saleItemsCount}]price`;
+        subtotal.name = `sale_items[${saleItemsCount}]subtotal`;
+
+        saleItemsCount++;
+    });
+}
+//-----------------------------------------------------------
+//Update product
+//-----------------------------------------------------------
+updateSaleBtn.addEventListener('click', async () => {
+    const saleItemRows = saleItems.querySelectorAll('.sale-item-row');
+    if (saleItemRows.length <= 0) {
+        Toast.show('Add Sale Items First', "error");
+        return;
+    };
+
+    const requestBody = {};
+    requestBody.customer_email = customerEmail.value;
+    requestBody.customer_name = customerName.value;
+    requestBody.customer_phone = customerPhone.value;
+
+    requestBody.sale_date = saleDate.value;
+    requestBody.sale_items = [];
+
+    saleItemRows.forEach(saleItemRow => {
+        const productId = saleItemRow.querySelector(`input[data-product-id]`);
+        const qty = saleItemRow.querySelector(`input[data-qty]`);
+        const price = saleItemRow.querySelector(`input[data-price]`);
+
+        requestBody.sale_items.push({
+            product_id: productId.dataset.id,
+            qty: qty.value,
+            price: price.value,
+        });
+    })
+
+    const request = new Request({
+        url: `/sales/${saleId}`,
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': Selector.qs("meta[name='csrf-token']").content,
+        },
+        body: JSON.stringify(requestBody),
+    });
+
+    request.send(async response => {
+        switch (response.status) {
+            case 200:
+                Inform.show(response.data.message, () => {
+                    window.location.href = '/sales';
+                });
+                break;
+            case 422:
+                showValidationErrors(response.data.errors);
+                Toast.show("Invalid Data", "error");
+                break;
+            case 409:
+                Toast.show(response.data.message, "error");
+                break;
+            case 403:
+                Toast.show("Unauthorized", "error");
+                break;
+            default:
+                Toast.show("Internal Error", "error");
+        }
+    });
+});
+//-----------------------------------------------------------
+//Delete product
+//-----------------------------------------------------------
+deleteSaleBtn.addEventListener('click', () => {
+    Alert.show('Are you sure, you want to delete this sale?', () => {
+        const request = new Request({
+            url: `/sales/${saleId}`,
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': Selector.qs("meta[name='csrf-token']").content,
+            }
+        });
+        request.send(response => {
+            switch (response.status) {
+                case 204:
+                    window.location.href = '/sales';
+                    break;
+                case 403:
+                    Toast.show('Unauthorized', "error");
+                    break;
+                default:
+                    Toast.show("Internal Error", "error");
+            }
+        });
+    }, 'Delete');
+})
+
+function errorKeyToName(key) {
+    return key.replace(/\.(\d+)\./g, '[$1]')
+        .replace(/\.([^.]+)$/, '$1');
+}
+function resetErrorFields() {
+    const main = Selector.id("main");
+    const inputs = main.querySelectorAll("input");
+    inputs.forEach(input => {
+        const errorLabel = Selector.id(`${input.name}_error`);
+        if (!errorLabel) return;
+
+        input.style.border = '1px solid lightgray';
+        errorLabel.textContent = "";
+        errorLabel.style.visibility = 'hidden';
+    })
+}
+function showValidationErrors(errors) {
+    resetErrorFields();
+    Object.entries(errors).forEach(([key, messages]) => {
+
+        const name = errorKeyToName(key);
+
+        console.log(name);
+        const input = document.querySelector(
+            `[name="${name}"]`
+        );
+
+        if (!input) {
+            return;
+        }
+
+        const errorLabel = Selector.id(`${name}_error`);
+        if (!errorLabel) return;
+        input.style.border = '1px solid red';
+        errorLabel.style.visibility = 'visible';
+        errorLabel.textContent = messages[0];
+    });
+}

@@ -12,6 +12,7 @@ class SaleItem extends Model
         'unit',
         'qty',
         'price',
+        'profit',
         'subtotal',
     ];
 

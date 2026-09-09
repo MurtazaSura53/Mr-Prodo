@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/signup', [SignupController::class, 'index'])
@@ -59,8 +60,6 @@ Route::middleware('auth')->group(function () {
         ->name('purchases');
     Route::get('/purchases/create', [PurchaseController::class, 'create'])
         ->name('purchases.create');
-    Route::get('/purchases/{purchase}', [PurchaseController::class, 'show'])
-        ->name('purchases.show');
     Route::post('/purchases', [PurchaseController::class, 'store'])
         ->name('purchases.store');
     Route::get('/purchases/edit/{purchase}', [PurchaseController::class, 'edit'])
@@ -69,4 +68,17 @@ Route::middleware('auth')->group(function () {
         ->name('purchases.update');
     Route::delete('/purchases/{purchase}', [PurchaseController::class, 'destroy'])
         ->name('purchases.delete');
+
+    Route::get('/sales', [SaleController::class, 'index'])
+        ->name('sales');
+    Route::get('/sales/create', [SaleController::class, 'create'])
+        ->name('sales.create');
+    Route::post('/sales', [SaleController::class, 'store'])
+        ->name('sales.store');
+    Route::get('/sales/edit/{sale}', [SaleController::class, 'edit'])
+        ->name('sales.edit');
+    Route::put('/sales/{sale}', [SaleController::class, 'update'])
+        ->name('sales.update');
+    Route::delete('/sales/{sale}', [SaleController::class, 'destroy'])
+        ->name('sales.delete');
 });

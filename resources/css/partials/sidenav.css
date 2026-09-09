@@ -37,6 +37,11 @@
 
 .sidenav-ul li:hover {
     background-color: #495057;
+    border-left: 3px solid gray;
+}
+
+.sidenav-ul li.active {
+    border-left: 3px solid gray;
 }
 
 .sidenav-ul li a {

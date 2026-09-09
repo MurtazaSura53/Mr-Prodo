@@ -280,25 +280,27 @@ function showValidationErrors(errors) {
 }
 
 deletePurchaseBtn.addEventListener('click', () => {
-    const purchaseId = Selector.qs("meta[name='purchaseId']").content;
-    const request = new Request({
-        url: `/purchases/${purchaseId}`,
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': Selector.qs("meta[name='csrf-token']").content,
-        }
-    });
-    request.send(response => {
-        switch (response.status) {
-            case 204:
-                window.location.href = '/purchases';
-                break;
-            case 403:
-                Toast.show('Unauthorized', "error");
-                break;
-            default:
-                Toast.show("Internal Error", "error");
-        }
-    })
+    Alert.show('Are you sure, you want to delete this purchase?', () => {
+        const purchaseId = Selector.qs("meta[name='purchaseId']").content;
+        const request = new Request({
+            url: `/purchases/${purchaseId}`,
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': Selector.qs("meta[name='csrf-token']").content,
+            }
+        });
+        request.send(response => {
+            switch (response.status) {
+                case 204:
+                    window.location.href = '/purchases';
+                    break;
+                case 403:
+                    Toast.show('Unauthorized', "error");
+                    break;
+                default:
+                    Toast.show("Internal Error", "error");
+            }
+        })
+    }, 'Delete');
 })

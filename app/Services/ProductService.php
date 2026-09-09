@@ -9,7 +9,7 @@ class ProductService
 {
     public function options()
     {
-        return Product::all(['id', 'name', 'unit', 'purchase_price']);
+        return Product::all(['id', 'name', 'unit', 'purchase_price', 'selling_price', 'stock']);
     }
     public function paginated()
     {

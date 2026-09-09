@@ -124,7 +124,7 @@ class PurchaseService
             foreach ($purchase_items_data as $item_data) {
                 $product = Product::find($item_data['product_id']);
 
-                $product->stock = $item_data['qty'];
+                $product->stock += $item_data['qty'];
                 $product->purchase_price = $item_data['price'];
 
                 $product->save();

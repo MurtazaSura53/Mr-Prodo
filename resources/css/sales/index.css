@@ -1,0 +1,192 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.main-header>.btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.page-overview-strip {
+    display: flex;
+    gap: 10px;
+    color: #6c757d;
+}
+
+/* =========================================================
+   Sale Grid
+   ========================================================= */
+
+.sale-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* ==========================================================
+   Sale Card
+   ========================================================== */
+
+.sale-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ==========================================================
+   Header
+   ========================================================== */
+
+.sale-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.sale-card-id {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+}
+
+.sale-card-date {
+    font-size: 13px;
+    color: #777;
+}
+
+
+/* ==========================================================
+   Customer
+   ========================================================== */
+
+.sale-customer {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sale-customer-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.sale-customer-detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+}
+
+.sale-customer-detail i {
+    width: 16px;
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   Sale Info
+   ========================================================== */
+
+.sale-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sale-info-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.sale-info-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+
+/* ==========================================================
+   Summary
+   ========================================================== */
+
+.sale-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.sale-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sale-summary-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.sale-summary-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+}
+
+.sale-profit {
+    color: #198754;
+}
+
+/* ==========================================================
+   Walk-in Customer
+   ========================================================== */
+
+.sale-walk-in {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* =========================================================
+   Tablet
+   3 Cards
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+    .sale-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   Desktop
+   4 Cards
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .sale-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+}
