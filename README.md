@@ -73,3 +73,28 @@ The application follows a structured Laravel architecture with controllers, Form
 * API Resources for structured JSON responses
 * Dependency Injection through Laravel's Service Container
 * Separation of controllers, validation, authorization, business logic, and data transformation
+
+## Tech Stack
+
+### Backend
+
+* PHP
+* Laravel
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Blade
+
+### Database
+
+* MySQL
+
+### Tools & Development
+
+* Git
+* GitHub
+* VS Code
+* Font Awesome
