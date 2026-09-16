@@ -112,4 +112,6 @@ Mr-Prodo follows a layered Laravel architecture where each component has a speci
 * Service — Contains the application's business logic and database transactions.
 * Model / Eloquent — Handles database interaction and relationships.
 * API Resource — Transforms model data into a structured JSON response.
-* JavaScript — Processes the response and updates the user interface.
+
+### Sales Processing Flow
+![Mr. Prodo Banner](screenshots/Sales%20Processing%20Flow.png)
