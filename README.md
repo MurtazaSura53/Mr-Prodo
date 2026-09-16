@@ -98,3 +98,18 @@ The application follows a structured Laravel architecture with controllers, Form
 * GitHub
 * VS Code
 * Font Awesome
+
+## Application Flow
+Mr-Prodo follows a layered Laravel architecture where each component has a specific responsibility.
+
+![Mr. Prodo Banner](screenshots/Application%20Architecture.png)
+
+### Responsibilities
+* Blade & JavaScript — Render the interface and send asynchronous requests.
+* Controller — Handles the HTTP request and coordinates the application flow.
+* Form Request — Validates incoming data and returns validated input.
+* Policy — Checks whether the authenticated user is authorized to perform the requested action.
+* Service — Contains the application's business logic and database transactions.
+* Model / Eloquent — Handles database interaction and relationships.
+* API Resource — Transforms model data into a structured JSON response.
+* JavaScript — Processes the response and updates the user interface.
