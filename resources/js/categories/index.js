@@ -281,6 +281,7 @@ addCategoryBtn.addEventListener("click", async () => {
                         break;
                     default:
                         Toast.show("Internal error", "error");
+                        break;
                 }
             });
         }, "Add");

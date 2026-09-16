@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -81,4 +82,11 @@ Route::middleware('auth')->group(function () {
         ->name('sales.update');
     Route::delete('/sales/{sale}', [SaleController::class, 'destroy'])
         ->name('sales.delete');
+
+    Route::get('/customers', [CustomerController::class, 'index'])
+        ->name('customers');
+    Route::put('/customers/{customer}', [CustomerController::class, 'update'])
+        ->name('customers.update');
+    Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])
+        ->name('customers.delete');
 });

@@ -634,7 +634,7 @@ export class Alert {
             close();
 
             if (typeof onOk === 'function') {
-                onOk();
+                return onOk();
             }
 
         });
@@ -677,7 +677,7 @@ export class Inform {
             close();
 
             if (typeof onOk === 'function') {
-                onOk();
+                return onOk();
             }
 
         });
@@ -694,12 +694,20 @@ export class Prompt {
                 .attributes({ class: "input-wrapper" })
                 .children([
                     Element.make('label')
-                        .attributes({ text: field.label }).create(),
+                        .attributes({
+                            text: field.label,
+                            for: field.name,
+                        }).create(),
 
                     Element.make('input')
                         .attributes({
                             type: "text",
                             name: field.name
+                        }).create(),
+
+                    Element.make('span')
+                        .attributes({
+                            id: `${field.name}_error`,
                         }).create(),
                 ]).create();
             inputWrappers.push(inputWrapper);
@@ -717,7 +725,7 @@ export class Prompt {
             return fields;
         }
 
-        const promptBox = Element.make('div', container)
+        const promptBox = Element.make('form', container)
             .attributes({ class: "prompt-box" })
             .children([...inputWrappers, ...[
                 Element.make("div")
@@ -738,9 +746,9 @@ export class Prompt {
                                 text: okBtnText,
                                 onClick: () => {
                                     if (typeof onOk === 'function') {
-                                        onOk(generatedFields());
+                                        onOk(generatedFields(), promptBox);
+                                        close();
                                     }
-                                    close();
                                 }
                             }).create(),
                     ]).create(),

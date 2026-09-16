@@ -7,7 +7,7 @@
             <li id="productsLink"><a href="{{ route('products') }}"><i class="fa-solid fa-box-open"></i>Products</a></li>
             <li id="purchasesLink"><a href="{{ route('purchases') }}"><i class="fa-solid fa-cart-plus"></i>Purchases</a></li>
             <li id="salesLink"><a href="{{ route('sales') }}"><i class="fa-solid fa-cart-shopping"></i>Sales</a></li>
-            <li id="customersLink"><a href="/"><i class="fa-solid fa-users"></i>Customers</a></li>
+            <li id="customersLink"><a href="{{ route('customers') }}"><i class="fa-solid fa-users"></i>Customers</a></li>
             <li id="logoutLink">
                 <a href="#" id="logoutBtn">
                     <i class="fa-solid fa-right-from-bracket"></i>
