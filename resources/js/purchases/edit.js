@@ -1,4 +1,4 @@
-import { Selector, Element, Toast, Inform, Request, createInput } from "../main";
+import { Selector, Element, Toast, Alert, Inform, Request, createInput } from "../main";
 
 const form = Selector.id("form");
 const productList = Selector.id("productList");
