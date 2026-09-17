@@ -28,7 +28,7 @@ body {
     display: flex;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: whitesmoke;
+    background-color: #f2f2ff;
 }
 
 h1 {
@@ -83,21 +83,24 @@ button:hover {
 .secondary,
 .general,
 .error {
-    background-color: #1B4EF5;
+    background: linear-gradient(45deg, #1B4EF5, #8500ff);
     color: white;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
 }
 
 .secondary {
-    background-color: #3874FF;
+    background: none;
+    background-color: orange;
 }
 
 .general {
+    background: none;
     background-color: #e9ecef;
     color: #495057;
 }
 
 .error {
+    background: none;
     background-color: #FF2C2C;
 }
 

@@ -79,7 +79,7 @@
                             required="required"
                             data-qty="">
 
-                        <span class="unit">{{ $saleItem->unit }}</span>
+                        <span class="unit" data-unit>{{ $saleItem->unit }}</span>
                     </div>
                     <span id="sale_items[{{ $saleItemsCount }}]qty_error"></span>
                 </div>

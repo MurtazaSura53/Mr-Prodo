@@ -5,7 +5,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #1B4EF5;
+    background: linear-gradient(45deg, #1B4EF5, #8500ff);
 }
 
 .logo {

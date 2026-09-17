@@ -18,11 +18,11 @@ export default defineConfig({
         port: 5173,
 
         cors: {
-            origin: 'http://192.168.0.101:8000',
+            origin: 'http://192.168.0.107:8000',
         },
 
         hmr: {
-            host: '192.168.0.101',
+            host: '192.168.0.107',
         },
         // watch: {
         //     ignored: ['**/storage/framework/views/**'],

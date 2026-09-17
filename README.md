@@ -115,3 +115,45 @@ Mr-Prodo follows a layered Laravel architecture where each component has a speci
 
 ### Sales Processing Flow
 ![Mr. Prodo Banner](screenshots/Sales%20Processing%20Flow.png)
+
+## Screenshots
+
+### Product Management
+
+#### Product Listing
+![Product Listing](screenshots/product-index.jpeg)
+
+#### Create Product
+![Create Product](screenshots/product-create.jpeg)
+
+#### Product Validation
+![Product Validation](screenshots/validation.jpeg)
+
+### Category Management
+
+#### Category Listing
+![Category Listing](screenshots/category-index.jpeg)
+
+### Profile Management
+
+#### User Profile
+![User Profile](screenshots/profile.jpeg)
+
+### Purchase Management
+
+#### Purchase Listing
+![Purchase Listing](screenshots/purchase-index.jpeg)
+
+#### Edit Purchase
+![Edit Purchase](screenshots/purchase-edit.jpeg)
+
+### Sales Management
+
+#### Sales Listing
+![Sales Listing](screenshots/sale-index.jpeg)
+
+#### Edit Sale
+![Edit Sale](screenshots/sale-edit.jpeg)
+
+#### Insufficient Stock Exception
+![Insufficient Stock Exception](screenshots/InsufficientStockException.jpeg)
