@@ -13,7 +13,7 @@
 @endsection
 
 @section('form')
-<form id="form" action="{{ route('login.store') }}" method="POST" class="card signup-form">
+<form id="form" class="card signup-form">
     @csrf
     <div class="input-wrapper">
         <label for="email">Email:</label>
@@ -23,10 +23,11 @@
     <div class="input-wrapper">
         <label for="password">Password:</label>
         <input type="password" name="password" required>
-        <span id="password_error"></span>
+        <span id="password_error">
+        </span>
     </div>
     <div class="flex center">
-        <button type="submit" class="primary btn">Submit</button>
+        <button type="button" id="storeLoginBtn" class="primary btn">Submit</button>
     </div>
 </form>
 @endsection

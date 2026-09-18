@@ -19,7 +19,10 @@ class SignupController extends Controller
     ) {
         $fields = $request->validated();
         if ($authService->signup($fields)) {
-            return redirect()->route('login');
+            return response()->json([
+                'message' => 'Signup Successfully',
+                'data' => null,
+            ], 201);
         }
     }
 }

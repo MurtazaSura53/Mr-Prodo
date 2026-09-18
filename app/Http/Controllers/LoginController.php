@@ -21,11 +21,17 @@ class LoginController extends Controller
         if (Auth::attempt($fields)) {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return response()->json([
+                'message' => "Login Successfully",
+                'data' => null,
+            ], 201);
         }
-        return back()->withErrors([
-            'password' => 'Invalid email or password.',
-        ]);
+        return response()->json([
+            'message' => "Unauthorized",
+            'errors' => [
+                'password' => 'Invalid Email or Password'
+            ],
+        ], 401);
     }
     public function destroy(AuthService $authService)
     {

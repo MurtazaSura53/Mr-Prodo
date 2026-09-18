@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     @vite([
+    'resources/css/app.css',
     'resources/css/style.css',
     'resources/css/partials/header.css',
 
@@ -30,8 +31,10 @@
         </main>
     </div>
 
-    <div id="toast-container"></div>
     <div id="alert-container"></div>
+    <div id="toast-container"></div>
+    <div id="prompt-container"></div>
+    <div id="inform-container"></div>
     @yield('scripts')
 </body>
 

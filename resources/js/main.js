@@ -520,7 +520,6 @@ export class Form {
     }
     getJson() {
         const obj = {};
-        console.log(this.allInputs);
         this.allInputs.forEach(input => {
             obj[input.name] = input.value;
         });
