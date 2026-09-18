@@ -12,7 +12,7 @@ class CustomerService
     }
     public function paginated()
     {
-        return Customer::withSum('sales', 'total_amount')->paginate(10);
+        return Customer::withSum('sales', 'total_amount')->withCount('sales')->paginate(10);
     }
     public function create(array $fields)
     {

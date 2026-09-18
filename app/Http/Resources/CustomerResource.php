@@ -20,6 +20,7 @@ class CustomerResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'sales_sum_total_amount' => $this->sales_sum_total_amount,
+            'sales_count' => $this->sales_count ?? 0,
         ];
     }
 }

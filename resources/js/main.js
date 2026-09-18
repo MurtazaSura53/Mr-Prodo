@@ -701,7 +701,8 @@ export class Prompt {
                     Element.make('input')
                         .attributes({
                             type: "text",
-                            name: field.name
+                            name: field.name,
+                            value: field?.value ?? '',
                         }).create(),
 
                     Element.make('span')

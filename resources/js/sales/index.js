@@ -137,6 +137,7 @@ nextBtn.addEventListener('click', async () => {
 
     renderPagination();
 });
+
 function updatePageOverview(meta) {
 
     Selector.id('totalItems').textContent = meta.total;

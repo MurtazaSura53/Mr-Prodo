@@ -24,7 +24,7 @@ class SaveCustomerRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'name' => 'nullable|regex:/^[a-zA-Z\d\s]+$/|max:255',
+            'name' => 'required|regex:/^[a-zA-Z\d\s]+$/|max:255',
             'phone' => 'nullable|regex:/^[\d]{10,20}$/',
         ];
     }

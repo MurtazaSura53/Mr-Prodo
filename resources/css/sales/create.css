@@ -29,14 +29,18 @@
     padding-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     justify-content: end;
-    font-size: 20px;
+    font-size: 18px;
     color: dimgray;
 }
 
 .total-amount-wrapper span {
     padding: 0px 10px;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .total-amount-wrapper span:nth-child(1) {
@@ -61,5 +65,12 @@
 
     .total-amount-wrapper {
         flex-direction: row;
+        font-size: 20;
+    }
+
+    .total-amount-wrapper span {
+        width: unset;
+        display: block;
+        justify-content: space-between;
     }
 }
