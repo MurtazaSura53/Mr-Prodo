@@ -38,6 +38,7 @@
     <div id="toast-container"></div>
     <div id="prompt-container"></div>
     <div id="inform-container"></div>
+    <div id="loader-container"></div>
     @yield('scripts')
 </body>
 

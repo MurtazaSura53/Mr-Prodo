@@ -149,12 +149,14 @@ export class Paginate {
     async next(closure) {
         if (this.page >= this.lastPage) return;
 
+        Loader.start();
         const response = await fetch(`${this.url}?page=${this.page + 1}`, {
             headers: {
                 'Accept': 'application/json'
             }
         });
         const data = await response.json();
+        Loader.stop();
 
         this.page = this.page + 1;
         return closure(data);
@@ -162,23 +164,28 @@ export class Paginate {
     async previous(closure) {
         if (this.page <= 1) return;
 
+        Loader.start();
         const response = await fetch(`${this.url}?page=${this.page - 1}`, {
             headers: {
                 'Accept': 'application/json'
             }
         });
         const data = await response.json();
+        Loader.stop();
 
         this.page = this.page - 1;
         return closure(data);
     }
     async current(closure) {
+        Loader.start();
         const response = await fetch(`${this.url}?page=${this.page}`, {
             headers: {
                 'Accept': 'application/json'
             }
         });
         const data = await response.json();
+        Loader.stop();
+
         return closure(data);
     }
 }
@@ -196,6 +203,7 @@ export class Request {
 
     async send(closure = null) {
 
+        Loader.start();
         const response = await fetch(this.url, {
             method: this.method,
             headers: this.headers,
@@ -207,6 +215,8 @@ export class Request {
         // this.response = await response.json();
         if (response.status !== 204)
             this.response.data = await response.json();
+
+        Loader.stop();
         this.response.ok = response.ok;
         this.response.status = response.status;
 
@@ -754,5 +764,19 @@ export class Prompt {
                     ]).create(),
             ]]).create();
         container.classList.add('active');
+    }
+}
+export class Loader {
+    static start() {
+        const container = Selector.id('loader-container');
+        container.classList.add('active');
+        Element.make('div', container).attributes({
+            class: 'loader',
+        }).create();
+    }
+    static stop() {
+        const container = Selector.id('loader-container');
+        container.innerHTML = '';
+        container.classList.remove('active');
     }
 }

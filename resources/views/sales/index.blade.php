@@ -94,7 +94,7 @@
 
         <!-- Action -->
         <div class="flex jc-end">
-            <a href="/sales/edit/{{ $sale->id }}">
+            <a href="/sales/edit/{{ $sale->id }}" class="text-decoration-none">
                 <button type="button" class="btn primary">
                     View Sale
                 </button>
