@@ -99,7 +99,12 @@ The application follows a structured Laravel architecture with controllers, Form
 * VS Code
 * Font Awesome
 
-## Application Flow
+## Application Work Flow
+The application workflow illustrates how an admin interacts with Mr-Prodo, from registration and login to managing categories, products, purchases, sales, and customers.
+
+![Mr. Application Work Flow](screenshots/Application%20Work%20Flow.png)
+
+## Application Architecture
 Mr-Prodo follows a layered Laravel architecture where each component has a specific responsibility.
 
 ![Mr. Prodo Banner](screenshots/Application%20Architecture.png)
