@@ -1,4 +1,5 @@
 import { Selector, Request, Alert, Toast, Paginate, Element } from '../main';
+Selector.id('productsLink').classList.add('active');
 
 const addProductBtn = Selector.id("addProductBtn");
 

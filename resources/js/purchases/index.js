@@ -1,4 +1,5 @@
 import { Selector, Request, Alert, Toast, Paginate, Element } from '../main';
+Selector.id('purchasesLink').classList.add('active');
 
 const addPurchaseBtn = Selector.id("addPurchaseBtn");
 

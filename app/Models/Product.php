@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Scopes\UserOwnedScope;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -25,6 +26,18 @@ class Product extends Model
         'selling_price',
     ];
 
+    // SCOPES -------------------------------------------
+    public function scopeInStock(Builder $query)
+    {
+        return $query->where('stock', '>', 0);
+    }
+
+    public function scopeOutOfStock(Builder $query)
+    {
+        return $query->where('stock', 0);
+    }
+
+    // RELATIONS -------------------------------------------
     public function user()
     {
         return $this->belongsTo(User::class);

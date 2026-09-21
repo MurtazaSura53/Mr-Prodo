@@ -1,4 +1,5 @@
 import { Selector, Element, Toast, Alert, Inform, Request, createInput } from "../main";
+Selector.id('purchasesLink').classList.add('active');
 
 const form = Selector.id("form");
 const productList = Selector.id("productList");

@@ -8,6 +8,7 @@ import {
     Paginate,
     Alert
 } from "../main";
+Selector.id('categoriesLink').classList.add('active');
 const addCategoryBtn = Selector.id("addCategoryBtn");
 let form = new Form(Selector.id("form"));
 

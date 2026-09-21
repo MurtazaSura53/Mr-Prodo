@@ -1,5 +1,6 @@
 import { Selector, Form, Request, Inform, Toast } from '../main';
 import { StoreProductValidator } from '../validators/StoreProductValidator';
+Selector.id('productsLink').classList.add('active');
 
 const storeProductBtn = Selector.id("storeProductBtn");
 const form = new Form(Selector.id("form"));

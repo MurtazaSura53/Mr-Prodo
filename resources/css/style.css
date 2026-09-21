@@ -44,6 +44,12 @@ button:hover {
     opacity: 0.8;
 }
 
+
+
+.show-in-mobile {
+    display: flex;
+}
+
 .btn,
 .btn-sml,
 .btn-fit,
@@ -102,6 +108,10 @@ button:hover {
 .error {
     background: none;
     background-color: #FF2C2C;
+}
+
+.text-decoration-none {
+    text-decoration: none;
 }
 
 .flex {
@@ -174,11 +184,43 @@ textarea:focus-visible {
     font-weight: 500;
 }
 
+/* ############################################################################# */
+/* @section: RANK */
+/* ############################################################################# */
+.rank {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    corner-shape: unset;
+}
+
+.rank-1 {
+    background-color: #D4AF37;
+    /* Gold */
+}
+
+.rank-2 {
+    background-color: #A8A9AD;
+    /* Silver */
+}
+
+.rank-3 {
+    background-color: #CD7F32;
+    /* Bronze */
+}
+
 .signup-form {
     width: 300px;
 }
 
-/* Flex Shortcuts */
+/* ############################################################################# */
+/* @section: FLEX SHORTCUTS */
+/* ############################################################################# */
 .flex {
     display: flex;
     gap: 15px;
@@ -211,6 +253,10 @@ textarea:focus-visible {
 
 .flex.jc-end {
     justify-content: end;
+}
+
+.flex-grow {
+    flex-grow: 1;
 }
 
 /* ############################################################################# */
@@ -679,10 +725,22 @@ textarea:focus-visible {
     font-size: 0.9rem;
 }
 
+.hide-in-mobile {
+    display: none;
+}
+
 @media screen and (min-width: 599px) and (max-width: 1029px) {
     /*  */
 }
 
 @media screen and (min-width: 1030px) {
-    /*  */
+
+
+    .show-in-pc {
+        display: flex;
+    }
+
+    .hide-in-pc {
+        display: none;
+    }
 }

@@ -8,6 +8,8 @@
     @yield('meta')
     <title>@yield('title')</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
+
     @include('partials/global')
     @yield('styles')
 </head>

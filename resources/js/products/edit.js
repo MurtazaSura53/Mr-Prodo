@@ -1,6 +1,8 @@
 import { Selector, Form, Request, Inform, Toast } from '../main';
 import { UpdateProductValidator } from '../validators/UpdateProductValidator';
 
+Selector.id('productsLink').classList.add('active');
+
 const productId = Selector.qs("meta[name='product']").content;
 const editProductBtn = Selector.id("editProductBtn");
 const form = new Form(Selector.id("form"));

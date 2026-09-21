@@ -1,5 +1,6 @@
 import { Selector, Form, Request, Toast } from '../main.js';
 import { UpdateProfileValidator } from '../validators/UpdateProfileValidator.js';
+Selector.id('profileLink').classList.add('active');
 
 const validator = new UpdateProfileValidator();
 const form = new Form(Selector.id('form'));

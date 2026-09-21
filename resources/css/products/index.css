@@ -123,6 +123,7 @@
 }
 
 .description-text {
+    max-width: 300px;
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
@@ -132,6 +133,8 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     letter-spacing: 0.5px;
+
+    text-align: justify;
 }
 
 .description-text.expanded {
