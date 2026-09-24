@@ -12,7 +12,7 @@ class PurchaseService
 {
     public function paginated()
     {
-        $purchases = Purchase::with('purchaseItems.product')->paginate(10);
+        $purchases = Purchase::with('purchaseItems.product')->latest()->paginate(10);
         return $purchases;
     }
     public function get(Purchase $purchase)

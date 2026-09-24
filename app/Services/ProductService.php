@@ -9,11 +9,11 @@ class ProductService
 {
     public function options()
     {
-        return Product::all(['id', 'name', 'unit', 'purchase_price', 'selling_price', 'stock']);
+        return Product::latest()->all(['id', 'name', 'unit', 'purchase_price', 'selling_price', 'stock']);
     }
     public function paginated()
     {
-        return Product::with('category')->paginate(10);
+        return Product::with('category')->latest()->paginate(10);
     }
     public function create(array $fields)
     {

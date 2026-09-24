@@ -18,7 +18,7 @@ class SaleService
     //-------------------------------------------------------------------
     public function paginated(): LengthAwarePaginator
     {
-        return  Sale::with(['customer', 'saleItems.product'])->paginate(10);
+        return  Sale::with(['customer', 'saleItems.product'])->latest()->paginate(10);
     }
     public function get(Sale $sale): Sale
     {

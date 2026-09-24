@@ -10,12 +10,12 @@ class CategoryService
 {
     public function all(): Collection
     {
-        return Category::withCount('products')->all();
+        return Category::withCount('products')->latest()->get();
     }
 
     public function paginated()
     {
-        return Category::withCount('products')->paginate(10);
+        return Category::withCount('products')->latest()->paginate(10);
     }
 
     public function create(array $fields)
