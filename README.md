@@ -1,4 +1,4 @@
-![Mr. Prodo Banner](screenshots/1000017397.jpg)
+![Mr. Prodo Banner](screenshots/README-Banner.jpg)
 # Mr. Prodo
 Product and Sale Management System built with Laravel to help store owners manage products, purchases, sales, customers, and stock efficiently.
 
@@ -123,6 +123,9 @@ Mr-Prodo follows a layered Laravel architecture where each component has a speci
 
 ## Screenshots
 
+### Dashboard
+![Dashboard](screenshots/dashboard-index.jpeg)
+
 ### Product Management
 
 #### Product Listing
@@ -159,6 +162,11 @@ Mr-Prodo follows a layered Laravel architecture where each component has a speci
 
 #### Edit Sale
 ![Edit Sale](screenshots/sale-edit.jpeg)
+
+### Customer Management
+
+#### Customers Listing
+![Customers Listing](screenshots/customer-index.jpeg)
 
 #### Insufficient Stock Exception
 ![Insufficient Stock Exception](screenshots/InsufficientStockException.jpeg)

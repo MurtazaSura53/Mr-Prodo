@@ -8,7 +8,7 @@ class CustomerService
 {
     public function options()
     {
-        return Customer::latest()->all(['id', 'name', 'email', 'phone']);
+        return Customer::latest()->get(['id', 'name', 'email', 'phone']);
     }
     public function paginated()
     {

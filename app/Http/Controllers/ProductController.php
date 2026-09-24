@@ -32,7 +32,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all(['id', 'name']);
+        $categories = Category::latest()->get(['id', 'name']);
         return view('products.create', compact('categories'));
     }
     public function store(StoreProductRequest $request)
