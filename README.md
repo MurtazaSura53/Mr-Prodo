@@ -163,10 +163,10 @@ Mr-Prodo follows a layered Laravel architecture where each component has a speci
 #### Edit Sale
 ![Edit Sale](screenshots/sale-edit.jpeg)
 
+#### Insufficient Stock Exception
+![Insufficient Stock Exception](screenshots/InsufficientStockException.jpeg)
+
 ### Customer Management
 
 #### Customers Listing
 ![Customers Listing](screenshots/customer-index.jpeg)
-
-#### Insufficient Stock Exception
-![Insufficient Stock Exception](screenshots/InsufficientStockException.jpeg)
